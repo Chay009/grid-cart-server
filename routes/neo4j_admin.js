@@ -145,7 +145,7 @@ const productProps = z.object({
 
 
 // Create Product and Associate with Seller
-router.post('/create-products/:sellerId', authenticateJwt, async (req, res) => {
+router.post('/create-products/:sellerId', authenticateJwt,async (req, res) => {
   const sellerId = req.params.sellerId;
   console.log(sellerId);
   console.log(req.body);
@@ -166,13 +166,13 @@ router.post('/create-products/:sellerId', authenticateJwt, async (req, res) => {
 
   try {
       // Trigger the webhook to initialize/update the vector index first
-      const webhookUrl = `${process.env.EMEBEDDINGS_GENERATING_SERVER}/webhook/initialize-vector-index`;
-      const payload = { product_created: true, productId }; // Include productId if needed
+      const webhookUrl = `${process.env.EMEBEDDINGS_GENERATING_SERVER}`;
+     
 
-      const response = await axios.post(webhookUrl, payload);
+      const response = await axios.post(webhookUrl);
       console.log('Webhook response:', response.data);
 
-      // If webhook is successful, proceed to create the product
+      // // If webhook is successful, proceed to create the product
       await session.run(
           `MERGE (p:Product {productId: $productId})
            ON CREATE SET p.title = $title,
