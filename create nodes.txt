@@ -1,0 +1,60 @@
+all these are for a specific data take or of it during routes 
+
+
+// seller
+
+CREATE (s:Seller {
+    sellerId: 'seller123',
+    name: 'Tech Store',
+    contact: 'contact@techstore.com',
+    location: 'San Francisco, USA'
+})
+
+
+//create product
+
+CREATE (p:Product {
+    productId: 'product123',
+    name: 'Smartphone XYZ',
+    description: 'A feature-packed smartphone with a sleek design.',
+    price: 799.99,
+    category: 'Electronics',
+    brand: 'TechBrand',
+    stock: 150,
+    images: [
+        'http://example.com/image1.jpg',
+        'http://example.com/image2.jpg'
+    ],
+    attributes: {
+        color: 'Black',
+        size: '128GB'
+    },
+    createdAt: '2024-08-25T14:30:00Z',
+    updatedAt: '2024-08-25T14:30:00Z',
+    isAvailable: true
+})
+
+
+// create user node
+
+CREATE (u:User {
+    userId: 'user123',
+    name: 'User Name',
+    email: 'user@example.com',
+    phone: '+1234567890',
+    interests: {
+        categories: ['Electronics', 'Home Appliances'],
+        brands: ['BrandX', 'BrandY']
+    },
+    preferences: {
+        purchaseHistory: [
+            {
+                productId: 'product123',
+                purchaseDate: '2024-08-25T14:30:00Z',
+                quantity: 1,
+                sellerId: 'seller123'
+            }
+        ]
+    }
+})
+
